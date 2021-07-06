@@ -96,15 +96,20 @@ m1_new = RSA_decrypt(c1, k_priv[0], k_priv[1])
 
 # result in plaintext space:
 res_plain = m1 * m2
+add_plain = m1 + m2
 
 # since RSA is partially homomorphic, we can perform multiplication in the cipher space as well
 # and we will get the same result
 
 # result in cipher space:
-res_cipher = c1 * c2
-res_cipher = RSA_decrypt(res_cipher, k_pub[0], k_pub[1])
+mult_cipher = c1 * c2
+res_cipher = RSA_decrypt(mult_cipher, k_pub[0], k_pub[1])
+add_cipher = c1 + c2
+res_cipher1 = RSA_decrypt(add_cipher, k_pub[0], k_pub[1])
 print(k_pub)
 print(k_priv)
 print(f"plaintext multiplication: {res_plain}")
 print(f"ciphertext multiplication: {res_cipher}")
 
+print(f"plaintext addition: {add_plain}")
+print(f"ciphertext addition: {add_cipher}")
